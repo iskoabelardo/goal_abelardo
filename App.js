@@ -3,7 +3,6 @@ import { useState, useRef } from 'react';
 
 import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput';
-import DeleteButton from './components/DeleteButton';
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
