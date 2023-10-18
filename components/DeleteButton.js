@@ -1,6 +1,7 @@
-import { StyleSheet, Text, TouchableOpacity, View, Modal, Button } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Modal, Button, Pressable } from 'react-native';
 import { useState } from 'react';
 //import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const DeleteButton = ({ onPress }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -18,12 +19,14 @@ const DeleteButton = ({ onPress }) => {
         <View style={style.modalContainer}>
           <View style={style.modalContent}>
             <Text style = {style.removeText}>Do you want to remove this item? </Text>
-            <TouchableOpacity style={style.modalButton} onPress={() => setModalVisible(false)}>
-              <Text> Cancel </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={style.modalButton} onPress={onPress}>
-              <Text> Remove </Text>
-            </TouchableOpacity>
+            <View style={style.modalRow}>
+              <Pressable style={style.modalButton} onPress={() => setModalVisible(false)}>
+                <Text> Cancel </Text>
+              </Pressable>
+              <Pressable style={style.modalButton} onPress={onPress}>
+                < DeleteIcon />
+              </Pressable>
+            </View>
           </View>
         </View>
       </Modal>
@@ -53,10 +56,15 @@ const style = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.10)',
   },
   modalContent: {
+    //flexDirection: 'row',
     backgroundColor: '#fff',
     padding: 10,
     borderRadius: 10,
     elevation: 5,
+  },
+  modalRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   removeText: {
     padding: 10,
@@ -64,8 +72,8 @@ const style = StyleSheet.create({
   },
   modalButton: {
     padding: 10,
-    marginBottom: 10,
-    justifyContent: 'center',
+    margin: 10,
+    //justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
     backgroundColor: '#C0B2AD'
